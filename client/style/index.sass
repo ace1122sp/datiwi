@@ -1,0 +1,260 @@
+$general-font-size: 1.2em
+$base1-color: #607D8B
+$base2-color: #263238
+$base-background: linear-gradient(to right, $base1-color, $base2-color)
+
+html, body
+  min-height: 100%
+  margin: 0
+
+.app
+  color: darkgray
+  background: $base-background
+  font-family: 'Dosis', sans-serif
+  margin: 0
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+
+  header
+    color: darkgray
+    text-shadow: 1px 1px 1px $base2-color
+    background: $base-background
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    padding: 0 20px
+
+    h4
+      width: 60%
+      color: aliceblue
+      font-size: 1.12em
+      letter-spacing: 9px
+      font-weight: 20
+
+    div
+      padding: 0 30px
+      display: flex
+      flex-direction: row
+      flex-grow: 1
+      justify-content: space-between
+
+.content-sector
+  display: flex
+  flex-direction: row
+  flex-grow: 1
+  margin-top: 27px
+
+  aside
+    justify-content: flex-start
+    display: flex
+    flex-direction: column
+    margin: 0
+    padding: 0 20px
+    font-size: $general-font-size
+
+    button
+      margin-top: 20px
+      margin-bottom: 20px
+
+    div
+      display: flex
+      flex-direction: column
+
+      button
+        margin: 8px auto
+
+.lib-act-sector
+  display: flex
+  flex-direction: row
+  flex-grow: 1
+  align-items: center
+
+.library, .main
+  display: flex
+  flex-direction: column
+  height: 100%
+  margin: 0
+
+.library
+  background: linear-gradient(to right, $base2-color, $base1-color)
+  position: relative
+  width: 50%
+
+.main
+  flex-grow: 1
+
+.main-a
+  margin: auto
+
+  form
+    text-align: center
+
+    label
+      font-size: 5.4vw
+      letter-spacing: 4px
+      animation: changing 2500ms ease
+      animation-iteration-count: infinite
+      animation-direction: alternate
+
+@keyframes changing
+  0%
+    color: inherit
+  100%
+    color: $base2-color
+
+.header
+  display: inherit
+  flex-direction: row
+  margin-bottom: 50px
+  padding: 0 1vw
+
+  h2
+    margin-right: 8vw
+    color: azure
+
+  label
+    color: azure
+
+.btn
+  font-family: Arial black
+  background: transparent
+  border-style: unset
+  box-shadow: 2px 2px 4px 0px $base2-color
+  color: azure
+  margin: auto 3px
+  padding-top: 2px
+  padding-bottom: 2px
+  border-radius: 4px
+  transition: all ease 100ms
+
+.btn:hover
+  cursor: pointer
+  transform: scale(.8)
+
+.del-btn
+  background: linear-gradient(to right, rgba(233, 30, 99, 0.83), rgba(237, 20, 61, 0.79))
+
+.special-btn
+  box-shadow: 2px 4px 7px 1px steelblue
+
+.comp-wrapper
+  font-size: $general-font-size
+  padding: 20px
+
+.subheader
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+.activity
+  position: relative
+  text-align: left
+
+  button:nth-child(1)
+    width: 70%
+    padding-left: 8px
+    margin: 0 15px 0 auto
+    text-align: left
+
+  span
+    width: 18%
+    padding: 0 10px
+
+  button:nth-child(2)
+    width: 8%
+
+.adding-activity-section, .main-b > form
+  text-align: center
+
+.adding-activity-section
+  label
+    padding-right: 13px
+
+.main-c
+  text-align: center
+
+.main-b > ul, .main-c > ul
+  font-size: 20px
+
+  li
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+
+    span
+      width: 35%
+
+    strong
+      width: 60%
+
+.c-page-activity
+  transition: all 300ms ease
+
+.c-page-activity:hover
+  cursor: pointer
+  color: azure
+
+.c-page-activity:active
+  transform: scaleX(0.95)
+
+.status
+  width: 5%
+
+.rmv-btns-section
+  text-align: center
+  display: flex
+  flex-direction: row
+  justify-content: center
+
+  button
+    margin: 10px 3px
+
+.submit-btn
+  background: linear-gradient(to left, #00BCD4, #2196F3)
+  text-align: center
+
+#showActivities
+  margin: 20px auto
+
+.list
+  padding-left: 20px
+  padding-right: 20px
+
+.intervals-settings
+  display: flex
+  flex-direction: column
+  flex-grow: 1
+
+  header
+    div
+      button
+        margin: auto 7px
+
+  form
+    margin: 40px auto
+
+.settings-content
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: center
+
+.time-unit-settings
+  margin: 10px
+
+  button
+    margin-right: 2px
+    margin-left: 4px
+
+.inp
+  font-family: inherit
+  background-color: rgb(44, 49, 52)
+  color: lightblue
+  border-style: hidden
+  padding: 2px
+  border-radius: 4px
+
+.setter
+  font-size: 1.5em
