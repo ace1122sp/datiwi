@@ -1,7 +1,11 @@
 const express = require('express');
 
-const updateActivity = (req, res) => {}
+const countUpActivity = (req, res) => {
+  res.end();
+}
 
-const deleteActivity = (req, res) => {}
+const countUpTimeUnit = (req, res) => {
+  res.end();
+}
 
-module.exports = { updateActivity, deleteActivity };
+module.exports = { countUpActivity, countUpTimeUnit };

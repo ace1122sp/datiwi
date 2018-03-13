@@ -22,17 +22,17 @@ db.once('open', () => {
   console.log('connected to database');
 });
 
-//serving requests
+// serving requests
 app.use('/', jsonParser);
 app.use('/', urlencodedParser, router);
 
+app.use(express.static(path.resolve('../dist')));
 
-app.get('', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.resolve('../dist/index.html'));
   res.end();
 });
 
-app.use(express.static(path.resolve('../dist')));
 
 app.listen(PORT, () => {
   console.log(`Server is listening at PORT ${PORT}...`);
