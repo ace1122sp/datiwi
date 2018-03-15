@@ -1,7 +1,10 @@
 import { connect } from 'react-redux';
-import { resetDayEfficiency, deleteActivity } from './../actions/library'
+import { fetchDeleteActivity } from './../actions/fetchActivity';
+import { fetchReset } from './../actions/fetchEfficiency';
 import { activateActivity } from './../actions/active';
 import Library from './../components/Library';
+
+const baseUrl = 'http://localhost:9336/api/';
 
 const mapStateToProps = state => {
   return {
@@ -15,10 +18,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onResetClick: () => {
-      dispatch(resetDayEfficiency());
+      dispatch(fetchReset(`${baseUrl}day-efficiency`));
     },
     deleteActivity: id => {
-      dispatch(deleteActivity(id));
+      dispatch(fetchDelete(`${baseUrl}activity`, id));
     },
     onActivityClick: id => {
       dispatch(activateActivity(id));

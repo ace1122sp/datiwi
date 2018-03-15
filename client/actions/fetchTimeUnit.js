@@ -1,6 +1,6 @@
 import { createTimeUnit, deleteTimeUnit } from './timeUnit';
 
-export const fetchCreate = (url, timeUnit) =>
+export const fetchCreateTimeUnit = (url, timeUnit) =>
   dispatch => {
     const options = {
       method: 'POST',
@@ -14,7 +14,7 @@ export const fetchCreate = (url, timeUnit) =>
       .catch(e => console.error(e.message));
   }
 
-export const fetchDelete = (url, id) =>
+export const fetchDeleteTimeUnit = (url, id) =>
   dispatch => {
     const options = {
       method: 'DELETE',

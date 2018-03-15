@@ -1,6 +1,6 @@
 import { createActivity, deleteActivity, updadeActivityStats } from './library';
 
-export const fetchCreate = (url, name, id) =>
+export const fetchCreateActivity = (url, name, id) =>
   dispatch => {
     const options = {
       method: 'POST',
@@ -13,7 +13,7 @@ export const fetchCreate = (url, name, id) =>
       .catch(e => console.error(e.message));
   }
 
-export const fetchDelete = (url, id) =>
+export const fetchDeleteActivity = (url, id) =>
   dispatch => {
     const options = {
       method: 'DELETE',

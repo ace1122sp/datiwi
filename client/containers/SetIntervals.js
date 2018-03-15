@@ -1,7 +1,10 @@
 import { connect } from 'react-redux';
-import { deleteTimeUnit, createTimeUnit, showSettings } from './../actions/timeUnit';
-import { increaseTimeUnitID } from './../actions/counters';
+import { showSettings } from './../actions/timeUnit';
+import { fetchDeleteTimeUnit, fetchTimeUnit } from './../actions/fetchTimeUnit';
+import { fetchTimeUnitID } from './../actions/fetchCounters';
 import IntervalsSettings from './../components/IntervalsSettings';
+
+const baseUrl = 'http://localhost:9336/api/';
 
 const mapStateToProps = state => {
   return {
@@ -13,11 +16,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     clickToDeleteTimeUnit: id => {
-      dispatch(deleteTimeUnit(id));
+      dispatch(fetchDeleteTimeUnit(`${baseUrl}time-unit`, id));
     },
     submitToCreateTimeUnit: (hours, minutes, id) => {
-      dispatch(createTimeUnit(hours, minutes, id));
-      dispatch(increaseTimeUnitID());
+      dispatch(fetchTimeUnit(`${baseUrl}time-unit`, hours, minutes, id));
+      dispatch(fetchTimeUnitID(`${baseUrl}id-counter-timeunits`));
     },
     clickToCloseSettings: () => {
       dispatch(showSettings('close'));

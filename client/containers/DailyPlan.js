@@ -1,8 +1,11 @@
 import { connect } from 'react-redux';
-import { endPlan, changeStatus } from './../actions/activePlan';
+import { fetchEnd, fetchStatusUpdate } from './../actions/fetchPlan';
 import { switchMainPage } from './../actions/mainPage';
-import { updateActivityStats, sendTodayEfficiency } from './../actions/library';
+import { fetchTodayEfficiency } from './../actions/fetchEfficiency';
+import { fetchUpdate } from './../actions/fetchActivity';
 import MainPageC from './../components/MainPage/MainPageC';
+
+const baseUrl = 'http://localhost:9336/api/';
 
 const mapStateToProps = state => {
   return {
@@ -14,21 +17,21 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     handleChangingStatus: id => {
-      dispatch(changeStatus(id));
+      dispatch(fetchStatusUpdate(`${baseUrl}active-plan/status`, id));
     },
     finishingPlan: () => {
-      dispatch(endPlan());
+      dispatch(fetchEnd(`${baseUrl}active-plan/end`));
       dispatch(switchMainPage('A'));
     },
     handleUpdatingActivityStats: (id, minutes) => {
-      dispatch(updateActivityStats(id, minutes));
+      dispatch(fetchUpdate(`${baseUrl}activity`, id, minutes));
     },
     handleDiscardingPlan: () => {
-      dispatch(endPlan());
+      dispatch(fetchEnd(`${baseUrl}active-plan/end`));
       dispatch(switchMainPage('A'));
     },
     handleSendingTodayEfficiency: eff => {
-      dispatch(sendTodayEfficiency(eff));
+      dispatch(fetchTodayEfficiency(`${baseUrl}day-efficiency`, eff));
     }
   }
 }
