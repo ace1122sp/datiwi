@@ -22,6 +22,8 @@ export const activePlan = (state = [], action) => {
       return [];
     case 'END_PLAN':
       return [];
+    case 'INIT_ACTIVE_PLAN':
+      return action.activePlan;
     default:
       return state;
   }

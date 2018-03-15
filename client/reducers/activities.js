@@ -25,6 +25,8 @@ export const activities = (state = {0:{
         state,
         {[action.id]:
           {...updatedActivity}});
+    case 'INIT_ACTIVITES':
+      return action.activities;
     default:
       return state;
   }

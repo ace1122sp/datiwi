@@ -22,37 +22,6 @@ const mapDispatchToProps = dispatch => {
     callAPI: dispatch(getInitState(apiUrl))
   }
 }
-// let App = ({ showTimeUnitsSettings, showLibrary, showingMainPage }) => {
-//   let timeUnitSection = <ChooseInterval />;
-//   let library = null;
-//
-//   if(showTimeUnitsSettings === 'show') timeUnitSection = <SetIntervals />;
-//   if(showLibrary === 'show') library = <DynamicLibrary />;
-//   if(showingMainPage === 'A') {
-//     library = null;
-//     timeUnitSection = null;
-//   } else if(showingMainPage === 'C') {
-//     timeUnitSection = null;
-//   }
-//
-//   let libActSector =
-//     <div className='lib-act-sector'>
-//       {library}
-//       <MainPage />
-//     </div>;
-//
-//   if(showTimeUnitsSettings === 'show') libActSector = null;
-//
-//   return (
-//     <div className='app'>
-//       <Header />
-//       <div className='content-sector'>
-//         {libActSector}
-//         {timeUnitSection}
-//       </div>
-//     </div>
-//   );
-// }
 
 class App extends Component {
   constructor(props) {

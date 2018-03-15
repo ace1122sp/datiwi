@@ -1,7 +1,6 @@
 import { INIT_ACTIVE_PLAN, INIT_ACTIVITIES, INIT_TIME_UNITS, INIT_ACTIVITY_COUNTER, INIT_TIME_UNIT_COUNTER, INIT_EFFICIENCY } from './constants';
 import { setTimePoint } from './productionPlan';
 
-//za initState moras da podesis ponasanje reducera
 //treba da posalje req i da onda uzme response i da za svaki prop iz responsa
 //dispatch-uje actions kako bi update-ovao state
 
@@ -68,16 +67,3 @@ export const getInitState = url =>
 
 //send updates
 //what methods???
-export const citiesFetchData = url => {
-  return dispatch => {
-    return fetch(url)
-      .then(response => {
-        if(!response.ok) throw Error(response.statusText);
-        return response.json();
-      })
-      .then(cities => {
-        dispatch(getCities(cities));
-      })
-      .catch(() => dispatch(hasErrored(true)));
-  };
-}

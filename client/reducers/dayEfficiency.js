@@ -4,6 +4,8 @@ export const dayEfficiency = (state = [], action) => {
       return [...state, action.todayEfficiency];
     case 'RESET_DAY_EFFICIENCY':
       return [];
+    case 'INIT_EFFICIENCY':
+      return action.efficiencyArr;
     default:
       return state;
   }

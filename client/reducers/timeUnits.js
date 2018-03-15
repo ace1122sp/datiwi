@@ -19,6 +19,8 @@ export const timeUnits = (state = {0:{
       const count = Object.keys(afterDel).length;
       if(count > 1) delete afterDel[action.id];
       return afterDel;
+    case 'INIT_TIME_UNITS':
+      return action.timeUnits;
     default:
       return state;
   }
