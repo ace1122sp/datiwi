@@ -5,12 +5,14 @@ const TimeUnitSchema = new Schema({
   hours: {
     type: Number,
     min: 0,
-    max: 24
+    max: 24,
+    required: true
   },
   minutes: {
     type: Number,
     min: 0,
-    max: 59
+    max: 59,
+    required: true
   },
   id: {
     type: String,

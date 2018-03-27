@@ -3,6 +3,7 @@ const activePlan = require('./../controllers/activePlan');
 const activities = require('./../controllers/activities');
 const dayEfficiency = require('./../controllers/dayEfficiency');
 const counters = require('./../controllers/counters');
+const timeUnits = require('./../controllers/timeUnits');
 
 const updates = express.Router();
 
@@ -21,9 +22,8 @@ updates.route('/activity')
 //
 // updates.put('/id-counter-timeunits', counters.countUpTimeUnit);
 //
-// updates.route('/time-unit')
-//   .delete(???) //napisi
-//   .post(???) //napisi
-//   .put(???); //napisi
+updates.route('/time-unit')
+  .post(timeUnits.createTimeUnit)
+  .delete(timeUnits.deleteTimeUnit);
 
 module.exports = updates;
