@@ -33,6 +33,11 @@ app.get('/', (req, res) => {
   res.end();
 });
 
+app.all('*', (req, res) => {
+  res.status(404);
+  res.send('Page not found.');
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is listening at PORT ${PORT}...`);

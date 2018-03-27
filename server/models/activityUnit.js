@@ -17,7 +17,7 @@ const ActivityUnitSchema = new Schema({
   endingMinutes: {
     type: Number,
     required: true
-  }
+  },
   id: {
     type: String,
     required: true

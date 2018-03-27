@@ -6,19 +6,18 @@ const ActivitySchema = new Schema({
     type: String,
     required: true,
     max: 100,
-    min:1
-  },
-  hours: {
-    type: Number,
-    required: true
+    min:1,
+    trim: true
   },
   minutes: {
     type: Number,
-    required: true
+    min: 0,
+    default: 0
   },
   id: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   }
 });
 

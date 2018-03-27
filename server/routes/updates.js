@@ -6,16 +6,24 @@ const counters = require('./../controllers/counters');
 
 const updates = express.Router();
 
-updates.put('/active-plan', activePlan.update);
-updates.post('/activity', activities.createActivity);
-updates.put('/activity', activities.updateActivity);
-updates.delete('/activity', activities.deleteActivity);
-updates.put('/day-efficiency', dayEfficiency.update);
-updates.delete('/day-efficiency', dayEfficiency.clear); //napisi
-updates.put('/id-counter-activities', counters.countUpActivity);
-updates.put('/id-counter-timeunits', counters.countUpTimeUnit);
-updates.delete('/time-unit', ???); //napisi
-updates.post('/time-unit', ???); //napisi
-updates.put('/time-point', ???); //napisi
+// updates.put('/active-plan', activePlan.update);
+
+updates.route('/activity')
+  .post(activities.createActivity)
+  .put(activities.updateActivity)
+  .delete(activities.deleteActivity);
+
+// updates.route('/day-efficiency')
+//   .put(dayEfficiency.update)
+//   .delete(dayEfficiency.clear); //napisi
+//
+// updates.put('/id-counter-activities', counters.countUpActivity);
+//
+// updates.put('/id-counter-timeunits', counters.countUpTimeUnit);
+//
+// updates.route('/time-unit')
+//   .delete(???) //napisi
+//   .post(???) //napisi
+//   .put(???); //napisi
 
 module.exports = updates;
