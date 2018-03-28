@@ -26,4 +26,22 @@ const PointersSchema = new Schema({
 
 const Pointers = mongoose.model('Pointers', PointersSchema, 'pointers');
 
+const init = () => {
+  Pointers.findOne({}, (err, result) => {
+    if(err) {
+      console.error(err);
+    } else if (result === null) {
+      const pointers = new Pointers();
+      pointers.save((err, result) => {
+        if(err) {
+          console.error(err);
+        } else {
+          console.log(result);
+        }
+      });
+    }
+  });
+}
+init();
+
 module.exports = Pointers;

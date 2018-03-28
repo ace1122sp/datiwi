@@ -17,11 +17,11 @@ updates.route('/activity')
 // updates.route('/day-efficiency')
 //   .put(dayEfficiency.update)
 //   .delete(dayEfficiency.clear); //napisi
-//
-// updates.put('/id-counter-activities', counters.countUpActivity);
-//
-// updates.put('/id-counter-timeunits', counters.countUpTimeUnit);
-//
+
+updates.put('/id-counter-activities', counters.countUpActivity);
+
+updates.put('/id-counter-timeunits', counters.countUpTimeUnit);
+
 updates.route('/time-unit')
   .post(timeUnits.createTimeUnit)
   .delete(timeUnits.deleteTimeUnit);
