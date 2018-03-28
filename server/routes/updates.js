@@ -14,9 +14,9 @@ updates.route('/activity')
   .put(activities.updateActivity)
   .delete(activities.deleteActivity);
 
-// updates.route('/day-efficiency')
-//   .put(dayEfficiency.update)
-//   .delete(dayEfficiency.clear); //napisi
+updates.route('/day-efficiency')
+  .put(dayEfficiency.update)
+  .delete(dayEfficiency.clear); 
 
 updates.put('/id-counter-activities', counters.countUpActivity);
 
