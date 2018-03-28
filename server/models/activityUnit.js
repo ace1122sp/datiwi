@@ -4,19 +4,27 @@ const Schema = mongoose.Schema;
 const ActivityUnitSchema = new Schema({
   startingHours: {
     type: Number,
-    required: true
+    required: true,
+    min: 0,
+    max: 23
   },
   startingMinutes: {
     type: Number,
-    required: true
+    required: true,
+    min: 0,
+    max: 59
   },
   endingHours: {
     type: Number,
-    required: true
+    required: true,
+    min: 0,
+    max: 23
   },
   endingMinutes: {
     type: Number,
-    required: true
+    required: true,
+    min: 0,
+    max: 59
   },
   id: {
     type: String,
@@ -24,7 +32,8 @@ const ActivityUnitSchema = new Schema({
   },
   status: {
     type: String,
-    required: true
+    required: true,
+    default: 'waiting'
   }
 });
 

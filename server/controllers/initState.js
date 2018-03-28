@@ -10,12 +10,16 @@ const initState = (req, res, next) => {
     const queries = [getActivities, getPlan, getTimeUnits, getPointers];
     const startTime = Date.now();
     parallel(queries, (err, results) => {
-      if(err) return console.log(err);
-      const endTime = Date.now();
-      console.log(`execution time: ${endTime - startTime}`)
-      console.log('all queries executed');
-      res.send(results);
-      res.end();
+      if(err) {
+        console.log(err);
+        res.sendStatus(500);
+      } else {
+        const endTime = Date.now();
+        console.log(`execution time: ${endTime - startTime}`);
+        console.log('all queries executed');
+        res.send(results);
+        res.end();
+      }
     });
 }
 

@@ -53,15 +53,20 @@ module.exports = {
   },
   //handling delete request
   deleteActivity(req, res) {
-    const id = req.body.id;
-    Activity.remove({ id }, (err, result) => {
-      if(err) {
-        console.error(err);
-        res.sendStatus(400);
-      } else {
-        console.log(`Activity ${id} has been deleted`);
-        res.sendStatus(200);
-      }
-    })
+    if(req.body.id) {
+      const id = req.body.id;
+      Activity.remove({ id }, (err, result) => {
+        if(err) {
+          console.error(err);
+          res.sendStatus(500);
+        } else {
+          console.log(`Activity ${id} has been deleted`);
+          res.sendStatus(200);
+        }
+      });
+    } else {
+      console.log('bad request');
+      res.sendStatus(400);
+    }
   }
 }

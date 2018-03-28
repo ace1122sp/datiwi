@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const PointersSchema = new Schema({
   dayEfficiency: {
-    type: [Number]
+    type: [Number],
+    default: []
   },
   idCounterActivities: {
     type: Number,
@@ -14,11 +15,6 @@ const PointersSchema = new Schema({
     type: Number,
     min: 0,
     default: 0
-  },
-  timePoint: {
-    type: String,
-    min: 5,
-    max: 5
   }
 });
 
@@ -29,13 +25,12 @@ const init = () => {
     if(err) {
       console.error(err);
     } else if (result === null) {
-      // const pointers = new Pointers();
-      const pointers = new Pointers({dayEfficiency: [2, 2]})
+      const pointers = new Pointers();
       pointers.save((err, result) => {
         if(err) {
           console.error(err);
         } else {
-          console.log(result);
+          console.log('initiated pointers: ', result);
         }
       });
     }
@@ -46,7 +41,7 @@ const removeOldEfficiencies = () => {
   Pointers.findOne({}, (err, result) => {
     if(err) {
       console.error(err);
-    } else {
+    } else if(result) {
       const efficiencyArr = result.dayEfficiency;
       const size = efficiencyArr.length;
       if(size > 5) {

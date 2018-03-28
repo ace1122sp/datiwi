@@ -7,7 +7,10 @@ const timeUnits = require('./../controllers/timeUnits');
 
 const updates = express.Router();
 
-// updates.put('/active-plan', activePlan.update);
+updates.route('/active-plan')
+  .post(activePlan.addPlan)
+  .put(activePlan.modifyActivity)
+  .delete(activePlan.clearPlan);
 
 updates.route('/activity')
   .post(activities.createActivity)
@@ -16,7 +19,7 @@ updates.route('/activity')
 
 updates.route('/day-efficiency')
   .put(dayEfficiency.update)
-  .delete(dayEfficiency.clear); 
+  .delete(dayEfficiency.clear);
 
 updates.put('/id-counter-activities', counters.countUpActivity);
 
