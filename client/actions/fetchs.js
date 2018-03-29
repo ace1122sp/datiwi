@@ -4,6 +4,9 @@ import { setTimePoint } from './productionPlan';
 //treba da posalje req i da onda uzme response i da za svaki prop iz responsa
 //dispatch-uje actions kako bi update-ovao state
 
+// FIXME: ne moraš da šalješ init fetch, jer app stiže sa json init state
+// TODO: pri pokretanju app, update state 
+
 export const initializeActivePlan = activePlan => {
   return {
     type: INIT_ACTIVE_PLAN,

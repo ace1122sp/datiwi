@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const router = require('./routes');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
+const initState = require('./controllers/initState');
 
 const PORT = 9336;
 const urlencodedParser = bodyParser.urlencoded({extended: false});
@@ -23,15 +25,13 @@ db.once('open', () => {
 });
 
 // serving requests
+app.use(helmet());
 app.use('/', jsonParser);
 app.use('/', urlencodedParser, router);
 
 app.use(express.static(path.resolve('../dist')));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.resolve('../dist/index.html'));
-  res.end();
-});
+app.get('/', initState);
 
 app.all('*', (req, res) => {
   res.status(404);

@@ -5,8 +5,9 @@ const ActivityUnit = require('./../models/activityUnit');
 const TimeUnit = require('./../models/timeUnit');
 const Pointers = require('./../models/pointers');
 const parallel = require('async/parallel');
+const initApp = require('./initApp');
 
-const initState = (req, res, next) => {
+const initState = (req, res) => {
     const queries = [getActivities, getPlan, getTimeUnits, getPointers];
     const startTime = Date.now();
     parallel(queries, (err, results) => {
@@ -17,7 +18,9 @@ const initState = (req, res, next) => {
         const endTime = Date.now();
         console.log(`execution time: ${endTime - startTime}`);
         console.log('all queries executed');
-        res.send(results);
+        //da pozovem handler koji će da salje i app
+        const html = initApp(results);
+        res.send(html);
         res.end();
       }
     });
@@ -66,5 +69,7 @@ async function getPointers() {
     }
   });
 }
+
+
 
 module.exports = initState;
