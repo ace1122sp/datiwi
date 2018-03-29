@@ -4,7 +4,6 @@ const path = require('path');
 const router = require('./routes');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
-const initState = require('./controllers/initState');
 
 const PORT = 9336;
 const urlencodedParser = bodyParser.urlencoded({extended: false});
@@ -30,8 +29,6 @@ app.use('/', jsonParser);
 app.use('/', urlencodedParser, router);
 
 app.use(express.static(path.resolve('../dist')));
-
-app.get('/', initState);
 
 app.all('*', (req, res) => {
   res.status(404);

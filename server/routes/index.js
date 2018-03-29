@@ -4,7 +4,7 @@ const initState = require('./../controllers/initState');
 
 const router = express.Router();
 
-router.get('/api', initState);
+router.get('/', initState);
 
 router.use('/api', updates);
 
