@@ -56,8 +56,6 @@ module.exports = {
   }
 };
 
-
-
 async function saveActivityUnit(activityUnit) {
   let { startingHours, startingMinutes, endingHours, endingMinutes, id } = activityUnit
   startingHours = parseInt(startingHours);
@@ -72,9 +70,3 @@ async function saveActivityUnit(activityUnit) {
     }
   });
 }
-
-
-
-
-
-// TODO: see where you need to use parseFloat() in other controllers
