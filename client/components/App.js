@@ -16,20 +16,9 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  const apiUrl = 'http://localhost:9336/api/';
-  return {
-    callAPI: dispatch(getInitState(apiUrl))
-  }
-}
-
 class App extends Component {
   constructor(props) {
     super(props);
-  }
-
-  componentWillMount() {
-    this.props.callAPI();
   }
 
   render() {

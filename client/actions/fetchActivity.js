@@ -30,7 +30,7 @@ export const fetchUpdate = (url, id, minutes) =>
   dispatch => {
     const options = {
       method: 'PUT',
-      body: JSON.stringify.({ id, minutes })
+      body: JSON.stringify({ id, minutes })
     };
     return fetch(url, options)
       .then(() => {

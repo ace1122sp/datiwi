@@ -1,4 +1,4 @@
-import { resetDayEfficiency, sendTodayEfficiency } from '';
+import { resetDayEfficiency, sendTodayEfficiency } from './library';
 
 export const fetchReset = url =>
   dispatch => {

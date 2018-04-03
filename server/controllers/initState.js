@@ -8,7 +8,12 @@ const parallel = require('async/parallel');
 const initApp = require('./initApp');
 
 const initState = (req, res) => {
-    const queries = [getActivities, getPlan, getTimeUnits, getPointers];
+    const queries = {
+      activities: getActivities,
+      plan: getPlan,
+      timeUnits: getTimeUnits,
+      pointers: getPointers
+    }
     const startTime = Date.now();
     parallel(queries, (err, results) => {
       if(err) {
@@ -18,7 +23,7 @@ const initState = (req, res) => {
         const endTime = Date.now();
         console.log(`execution time: ${endTime - startTime}`);
         console.log('all queries executed');
-        //da pozovem handler koji će da salje i app
+        //sending the app with current state data
         const html = initApp(results);
         res.send(html);
         res.end();

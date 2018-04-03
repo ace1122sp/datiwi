@@ -5,7 +5,7 @@ import { setTimePoint } from './productionPlan';
 //dispatch-uje actions kako bi update-ovao state
 
 // FIXME: ne moraš da šalješ init fetch, jer app stiže sa json init state
-// TODO: pri pokretanju app, update state 
+// TODO: pri pokretanju app, update state
 
 export const initializeActivePlan = activePlan => {
   return {
@@ -35,7 +35,7 @@ export const initializeActivityCounter = counter => {
   }
 }
 
-export const initializeTimeUnitCounter => counter => {
+export const initializeTimeUnitCounter = counter => {
   return {
     type: INIT_TIME_UNIT_COUNTER,
     counter
