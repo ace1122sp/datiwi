@@ -110,7 +110,7 @@ html, body {
   padding-top: 2px;
   padding-bottom: 2px;
   border-radius: 4px;
-  transition: all ease 100ms; }
+  transition: all ease 300ms; }
 
 .btn:hover {
   cursor: pointer;

@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import { formatTimeUnit } from './../methods';
-import { fetchTimePoint } from './../actions/fetchTimePoint';
-import { fetchAddedActivity, fetchRemovedActivity, fetchEnd } from './../actions/fetchPlan';
+import { addActivity, setTimePoint } from './../actions/productionPlan';
 import { activateActivity, activateTimeUnit } from './../actions/active';
 import { switchMainPage } from './../actions/mainPage';
 import { fetchCreateActivity } from './../actions/fetchActivity';
-import { fetchActivityID } from './../actions/counters';
+import { fetchActivityID } from './../actions/fetchCounters';
+import { fetchPlan } from './../actions/fetchPlan';
+
 import MainPageB from './../components/MainPage/MainPageB';
 
 const baseUrl = 'http://localhost:9336/api/';
@@ -59,25 +60,23 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     handleAddingActivity: (id, time) => {
-      dispatch(fetchAddedActivity(`${baseUrl}active-plan/add`, id, time));
+      dispatch(addActivity(id, time));
       let newTimePoint = time.endingHours + ':' + time.endingMinutes;
-      dispatch(fetchTimePoint(`${baseUrl}time-point`, newTimePoint));
+      dispatch(setTimePoint(newTimePoint));
     },
-    handleCreatingNewActivity: (val, id) => {
-      dispatch(fetchCreateActivity(`${baseUrl}activity`, val, id));
+    handleCreatingNewActivity: (name, id) => {
+      dispatch(fetchCreateActivity(`${baseUrl}activity`, name, id));
       dispatch(fetchActivityID(`${baseUrl}id-counter-activities`));
       dispatch(activateActivity(id));
     },
     removeLastActivity: prevTimePoint => {
-      dispatch(fetchRemovedActivity(`${baseUrl}active-plan/remove-last`));
-      dispatch(fetchTimePoint(`${baseUrl}time-point`, prevTimePoint));
+      dispatch(fetchRemovedActivity(`/remove-last`));
     },
     removeAllActivities: () => {
-      dispatch(fetchEnd(`${baseUrl}active-plan/end`));
       dispatch(switchMainPage('A'));
     },
-    createPlan: () => {
-      dispatch(switchMainPage('C'));
+    createPlan: plan => {
+      dispatch(fetchPlan(`${baseUrl}active-plan`, plan));
     },
     autoUpdateActiveTimeUnit: id => {
       dispatch(activateTimeUnit(id));

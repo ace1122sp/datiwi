@@ -1,28 +1,15 @@
 import { endPlan, changeStatus } from './productionPlan';
-import { addActivity, removeLastActivity } from './activePlan';
+import { switchMainPage } from './mainPage';
 
-export const fetchAddedActivity = (url, activity) =>
+export const fetchPlan = (url, plan) =>
   dispatch => {
-    const { id, time } = activity;
     const options = {
-      method: 'PUT',
-      body: JSON.stringify({ id, time })
+      method: 'POST',
+      body: plan
     };
     return fetch(url, options)
       .then(() => {
-        dispatch(addActivity(id, time));
-      })
-      .catch(e => console.error(e.message));
-  }
-
-export const fetchRemovedActivity = url =>
-  dispatch => {
-    const options = {
-      method: 'PUT',
-    };
-    return fetch(url, options)
-      .then(() => {
-        dispatch(removeLastActivity());
+        dispatch(switchMainPage('C'));
       })
       .catch(e => console.error(e.message));
   }

@@ -26,7 +26,7 @@ const MainPageB = ({ activeTimeUnit, activeActivity, activePlan, lastActivityID,
     }
   }
   const handleCreatingPlan = () => {
-    if (last) createPlan();
+    if (last) createPlan(activePlan);
   }
   return (
     <div className='main-b'>
