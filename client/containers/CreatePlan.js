@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { formatTimeUnit } from './../methods';
-import { addActivity, setTimePoint } from './../actions/productionPlan';
+import { addActivity, removeLastActivity, setTimePoint } from './../actions/productionPlan';
+import { endPlan } from './../actions/activePlan';
 import { activateActivity, activateTimeUnit } from './../actions/active';
 import { switchMainPage } from './../actions/mainPage';
 import { fetchCreateActivity } from './../actions/fetchActivity';
 import { fetchActivityID } from './../actions/fetchCounters';
 import { fetchPlan } from './../actions/fetchPlan';
-
 import MainPageB from './../components/MainPage/MainPageB';
 
 const baseUrl = 'http://localhost:9336/api/';
@@ -70,9 +70,11 @@ const mapDispatchToProps = dispatch => {
       dispatch(activateActivity(id));
     },
     removeLastActivity: prevTimePoint => {
-      dispatch(fetchRemovedActivity(`/remove-last`));
+      dispatch(removeLastActivity());
+      dispatch(setTimePoint(prevTimePoint));
     },
     removeAllActivities: () => {
+      dispatch(endPlan());
       dispatch(switchMainPage('A'));
     },
     createPlan: plan => {
