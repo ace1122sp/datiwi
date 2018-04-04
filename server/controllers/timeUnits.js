@@ -21,6 +21,7 @@ module.exports = {
       });
     } else {
       console.log('bad request');
+      console.log(req.body);
       res.sendStatus(400);
     }
   },

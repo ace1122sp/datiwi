@@ -6,7 +6,7 @@ module.exports = data =>
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
       <script>
-        window.__PRELOADED_STATE_DATA__ = ${JSON.stringify(data).replace(/</g, '\\u003c')}
+        window.__PRELOADED_STATE_DATA__ = ${data};
       </script>
       <title>datiwi</title>
     </head>

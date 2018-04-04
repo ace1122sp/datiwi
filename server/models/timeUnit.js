@@ -22,4 +22,23 @@ const TimeUnitSchema = new Schema({
 
 const TimeUnit = mongoose.model('TimeUnit', TimeUnitSchema);
 
+const init = () => {
+  TimeUnit.findOne({}, (err, result) => {
+    if(err) {
+      console.error(err);
+    } else if (result === null) {
+      const timeUnit = new TimeUnit({ hours: 1, minutes: 0, id: '0' });
+      timeUnit.save((err, result) => {
+        if(err) {
+          console.error(err);
+        } else {
+          console.log('created default time unit: ', result);
+        }
+      });
+    }
+  });
+}
+
+init();
+
 module.exports = TimeUnit;

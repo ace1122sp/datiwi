@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
-import { fetchTimePoint } from './../actions/fetchTimePoint';
+import { setTimePoint } from './../actions/productionPlan';
 import { switchMainPage } from './../actions/mainPage';
 import MainPageA from './../components/MainPage/MainPageA';
-
-const baseUrl = 'http://localhost:9336/api/';
 
 const mapStateToProps = state => {
   return {
@@ -14,7 +12,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     settingStartingTime: val => {
-      dispatch(fetchTimePoint(`${baseUrl}time-point`, val));
+      dispatch(setTimePoint(val));
     },
     handleSubmit: () => {
       dispatch(switchMainPage('B'));

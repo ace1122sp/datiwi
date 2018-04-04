@@ -5,7 +5,8 @@ export const fetchPlan = (url, plan) =>
   dispatch => {
     const options = {
       method: 'POST',
-      body: plan
+      body: plan,
+      headers: { 'Content-Type': 'application/json' }
     };
     return fetch(url, options)
       .then(() => {

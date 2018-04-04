@@ -28,40 +28,40 @@ const dayEfficiencyLast30days = dayEfficiency.slice(size - 30);
 
 let activities = {};
 let timeUnits = {};
-activities = PRELOADED_STATE_DATA.activities.forEach(activity => {
+PRELOADED_STATE_DATA.activities.forEach(activity => {
   activities[activity.id] = activity;
 });
-timeUnits = PRELOADED_STATE_DATA.timeUnits.forEach(unit => {
-  timeUnits[unit.id] = unit;
+PRELOADED_STATE_DATA.timeUnits.forEach(unit => {
+  let hours = unit.hours.toString();
+  let minutes = unit.minutes.toString();
+  const id = unit.id;
+  if(hours.length === 1) hours = '0' + hours;
+  if(minutes.length === 1) minutes = '0' + minutes;
+  timeUnits[id] = { hours, minutes, id };
 });
 let activeActivity;
 let activeTimeUnit;
 if(PRELOADED_STATE_DATA.activities.length) activeActivity = parseInt(PRELOADED_STATE_DATA.activities[0].id);
-if(PRELOADED_STATE_DATA.timeUnits.length) activeTimeUnits = parseInt(PRELOADED_STATE_DATA.timeUnits[0].id);
+if(PRELOADED_STATE_DATA.timeUnits.length) activeTimeUnit = parseInt(PRELOADED_STATE_DATA.timeUnits[0].id);
 
 const initState = {
-  activeActivity,
   activePlan,
-  activeTimeUnit,
   activities,
   dayEfficiency: dayEfficiencyLast30days,
   idCounterActivities: PRELOADED_STATE_DATA.pointers.idCounterActivities,
   idCounterTimeUnits: PRELOADED_STATE_DATA.pointers.idCounterTimeUnits,
-  showingLibrary: 'hide',
-  showingMainPage: 'A',
-  showTimeUnitsSettings: 'close',
   timeUnits,
-  timePoint: '08:00'
 };
-
 
 const root = document.getElementById('root');
 let store = createStore(rootReducer, initState, applyMiddleware(thunk));
+console.log('PRELOADED_STATE_DATA');
+console.log(PRELOADED_STATE_DATA);
+console.log('initState');
+console.log(initState);
+console.log('store');
 console.log(store.getState());
-// TODO: database ce da vodi evidenciju samo o planu koji je kreiran, sto znaci da
-// plan koji se sastavlja nece biti sacuvan ako se refreshuje strana
-//sa klikom na submit(u delu gde sastavljas plan) plan se kreira i tada se salje
-//post req database-u
+
 render(
   <Provider store={store} >
     <App />

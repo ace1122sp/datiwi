@@ -16,7 +16,8 @@ export const fetchTodayEfficiency = (url, todayEfficiency) =>
   dispatch => {
     const options = {
       method: 'PUT',
-      body: JSON.stringify({ todayEfficiency })
+      body: JSON.stringify({ todayEfficiency }),
+      headers: { 'Content-Type': 'application/json' }
     }
     return fetch(url, options)
       .then(() => {

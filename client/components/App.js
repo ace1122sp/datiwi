@@ -6,7 +6,6 @@ import DynamicLibrary from './../containers/DynamicLibrary';
 import Header from './Header';
 import ChooseInterval from './../containers/ChooseInterval';
 import SetIntervals from './../containers/SetIntervals';
-import { getInitState } from './../actions/fetchs';
 
 const mapStateToProps = state => {
   return {
