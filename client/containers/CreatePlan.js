@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { formatTimeUnit } from './../methods';
 import { addActivity, removeLastActivity, setTimePoint } from './../actions/productionPlan';
 import { endPlan } from './../actions/activePlan';
-import { activateActivity, activateTimeUnit } from './../actions/active'; //activateActivity not needed
+import { activateTimeUnit } from './../actions/active';
 import { switchMainPage } from './../actions/mainPage';
 import { fetchCreateActivity } from './../actions/fetchActivity';
 import { fetchActivityID } from './../actions/fetchCounters';
@@ -67,7 +67,6 @@ const mapDispatchToProps = dispatch => {
     handleCreatingNewActivity: (name, id) => {
       dispatch(fetchCreateActivity(`${baseUrl}activity`, name, id));
       dispatch(fetchActivityID(`${baseUrl}id-counter-activities`));
-      // dispatch(activateActivity(id)); // mora da bude unutar fetchCreateActivity
     },
     removeLastActivity: prevTimePoint => {
       dispatch(removeLastActivity());

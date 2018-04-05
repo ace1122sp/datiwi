@@ -5,9 +5,17 @@ const parallel = require('async/parallel');
 
 module.exports = {
   addPlan(req, res) {
-      if(req.body.startingHours && req.body.startingMinutes &&
-         req.body.endingHours && req.body.endingMinutes && req.body.id) {
-           const queries = req.body.plan.map(activityUnit => saveActivityUnit(activityUnit));
+      const validation = req.body.every(activityUnit => activityUnit.startingHours && activityUnit.startingMinutes &&
+         activityUnit.endingHours && activityUnit.endingMinutes && activityUnit.id !== undefined ? true : false)
+      if(validation) {
+           const count = req.body.length;
+           let queries = [];
+           for(let i = 0; i < count; i++) {
+             let newQuery = async function() {
+               saveActivityUnit(req.body[i]);
+             }
+             queries.push(newQuery);
+           }
            const startTime = Date.now();
            parallel(queries, (err, results) => {
              if(err) {

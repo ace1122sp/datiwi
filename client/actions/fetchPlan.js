@@ -3,9 +3,10 @@ import { switchMainPage } from './mainPage';
 
 export const fetchPlan = (url, plan) =>
   dispatch => {
+    console.log(plan);
     const options = {
       method: 'POST',
-      body: plan,
+      body: JSON.stringify(plan),
       headers: { 'Content-Type': 'application/json' }
     };
     return fetch(url, options)
