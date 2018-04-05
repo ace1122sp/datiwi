@@ -1,4 +1,4 @@
-import { endPlan, changeStatus } from './productionPlan';
+import { endPlan, changeStatus } from './activePlan';
 import { switchMainPage } from './mainPage';
 
 export const fetchPlan = (url, plan) =>
@@ -19,7 +19,7 @@ export const fetchPlan = (url, plan) =>
 export const fetchEnd = url =>
   dispatch => {
     const options = {
-      method: 'PUT'
+      method: 'DELETE'
     };
     return fetch(url, options)
       .then(() => {

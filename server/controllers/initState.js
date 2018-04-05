@@ -24,7 +24,6 @@ const initState = (req, res) => {
         console.log(`execution time: ${endTime - startTime}`);
         console.log('all queries executed');
         //sending the app with current state data
-
         const data = JSON.stringify(results).replace(/</g, '\\u003c');
         const html = initApp(data);
         res.send(html);

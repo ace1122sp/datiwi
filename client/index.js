@@ -10,7 +10,7 @@ const PRELOADED_STATE_DATA = Object.assign({}, window.__PRELOADED_STATE_DATA__);
 
 delete window.__PRELOADED_STATE_DATA__;
 
-const activePlan = PRELOADED_STATE_DATA.plan.sort((a, b) => {
+let activePlan = PRELOADED_STATE_DATA.plan.sort((a, b) => {
   const a1_hours = a.startingHours.toString();
   const a2_hours = b.startingHours.toString();
   let a1_minutes = a.startingMinutes.toString();
@@ -22,6 +22,21 @@ const activePlan = PRELOADED_STATE_DATA.plan.sort((a, b) => {
   let activity2 = parseInt(a2_hours + a2_minutes);
   return activity1 - activity2;
 });
+
+activePlan = activePlan.map(activity => {
+  let formatedActivity = {...activity};
+  formatedActivity.startingHours = formatedActivity.startingHours.toString();
+  formatedActivity.startingMinutes = formatedActivity.startingMinutes.toString();
+  formatedActivity.endingHours = formatedActivity.endingHours.toString();
+  formatedActivity.endingMinutes = formatedActivity.endingMinutes.toString();
+
+  if(formatedActivity.startingHours.length === 1) formatedActivity.startingHours = '0' + formatedActivity.startingHours;
+  if(formatedActivity.startingMinutes.length === 1) formatedActivity.startingMinutes = '0' + formatedActivity.startingMinutes;
+  if(formatedActivity.endingHours.length === 1) formatedActivity.endingHours = '0' + formatedActivity.endingHours;
+  if(formatedActivity.endingMinutes.length === 1) formatedActivity.endingMinutes = '0' + formatedActivity.endingMinutes;
+  return formatedActivity;
+});
+
 const dayEfficiency = PRELOADED_STATE_DATA.pointers.dayEfficiency;
 const size = dayEfficiency.length;
 const dayEfficiencyLast30days = dayEfficiency.slice(size - 30);
@@ -44,6 +59,9 @@ let activeTimeUnit;
 if(PRELOADED_STATE_DATA.activities.length) activeActivity = parseInt(PRELOADED_STATE_DATA.activities[0].id);
 if(PRELOADED_STATE_DATA.timeUnits.length) activeTimeUnit = parseInt(PRELOADED_STATE_DATA.timeUnits[0].id);
 
+let showingMainPage = 'A';
+if(activePlan.length) showingMainPage = 'C'
+
 const initState = {
   activePlan,
   activities,
@@ -51,12 +69,11 @@ const initState = {
   idCounterActivities: PRELOADED_STATE_DATA.pointers.idCounterActivities,
   idCounterTimeUnits: PRELOADED_STATE_DATA.pointers.idCounterTimeUnits,
   timeUnits,
+  showingMainPage
 };
 
 const root = document.getElementById('root');
 let store = createStore(rootReducer, initState, applyMiddleware(thunk));
-console.log('PRELOADED_STATE_DATA');
-console.log(PRELOADED_STATE_DATA);
 console.log('initState');
 console.log(initState);
 console.log('store');

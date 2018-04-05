@@ -17,17 +17,17 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     handleChangingStatus: id => {
-      dispatch(fetchStatusUpdate(`${baseUrl}active-plan/status`, id));
+      dispatch(fetchStatusUpdate(`${baseUrl}active-plan`, id));
     },
     finishingPlan: () => {
-      dispatch(fetchEnd(`${baseUrl}active-plan/end`));
+      dispatch(fetchEnd(`${baseUrl}active-plan`));
       dispatch(switchMainPage('A'));
     },
     handleUpdatingActivityStats: (id, minutes) => {
       dispatch(fetchUpdate(`${baseUrl}activity`, id, minutes));
     },
     handleDiscardingPlan: () => {
-      dispatch(fetchEnd(`${baseUrl}active-plan/end`));
+      dispatch(fetchEnd(`${baseUrl}active-plan`));
       dispatch(switchMainPage('A'));
     },
     handleSendingTodayEfficiency: eff => {
