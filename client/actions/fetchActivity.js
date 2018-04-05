@@ -1,4 +1,5 @@
 import { createActivity, deleteActivity, updadeActivityStats } from './library';
+import { activateActivity } from './../actions/active';
 
 export const fetchCreateActivity = (url, name, id) =>
   dispatch => {
@@ -10,6 +11,7 @@ export const fetchCreateActivity = (url, name, id) =>
     return fetch(url, options)
       .then(() => {
         dispatch(createActivity(name, id));
+        dispatch(activateActivity(id));
       })
       .catch(e => console.error(e.message));
   }

@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(fetchReset(`${baseUrl}day-efficiency`));
     },
     deleteActivity: id => {
-      dispatch(fetchDelete(`${baseUrl}activity`, id));
+      dispatch(fetchDeleteActivity(`${baseUrl}activity`, id));
     },
     onActivityClick: id => {
       dispatch(activateActivity(id));
