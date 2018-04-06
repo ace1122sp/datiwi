@@ -2,13 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Pointers = require('./../models/pointers');
 
-const update = (req, res) => {
-
-}
-
 module.exports = {
   update(req, res) {
-    if(req.body.eff) {
+    if(req.body.eff !== undefined) {
       const eff = parseFloat(req.body.eff);
       Pointers.findOneAndUpdate({}, { $push: { dayEfficiency: eff }}, (err, result) => {
         if(err) {

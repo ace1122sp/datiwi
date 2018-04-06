@@ -12,16 +12,16 @@ export const fetchReset = url =>
       .catch(e => console.error(e.message));
   }
 
-export const fetchTodayEfficiency = (url, todayEfficiency) =>
+export const fetchTodayEfficiency = (url, eff) =>
   dispatch => {
     const options = {
       method: 'PUT',
-      body: JSON.stringify({ todayEfficiency }),
+      body: JSON.stringify({ eff }),
       headers: { 'Content-Type': 'application/json' }
     }
     return fetch(url, options)
       .then(() => {
-        dispatch(sendTodayEfficiency(todayEfficiency));
+        dispatch(sendTodayEfficiency(eff));
       })
       .catch(e => console.error(e.message));
   }

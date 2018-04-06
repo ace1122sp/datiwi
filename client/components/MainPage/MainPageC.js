@@ -32,8 +32,8 @@ const MainPageC = ({ activePlan, activities, handleChangingStatus, finishingPlan
           handleUpdatingActivityStats(act.id, totalMinutes);
         }
       });
-      handleSendingTodayEfficiency(dayEff);//this should not be here
-      finishingPlan(); //this should not be here
+      handleSendingTodayEfficiency(dayEff);
+      finishingPlan(); 
     }
   }
   return (

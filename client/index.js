@@ -52,7 +52,9 @@ let showingMainPage = 'A';
 if(activePlan.length) showingMainPage = 'C'
 
 const initState = {
+  activeActivity,
   activePlan,
+  activeTimeUnit,
   activities,
   dayEfficiency: dayEfficiencyLast30days,
   idCounterActivities: PRELOADED_STATE_DATA.pointers.idCounterActivities,
@@ -63,10 +65,6 @@ const initState = {
 
 const root = document.getElementById('root');
 let store = createStore(rootReducer, initState, applyMiddleware(thunk));
-console.log('initState');
-console.log(initState);
-console.log('store');
-console.log(store.getState());
 
 render(
   <Provider store={store} >

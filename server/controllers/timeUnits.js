@@ -5,7 +5,7 @@ const TimeUnit = require('./../models/timeUnit');
 module.exports = {
   //handling post requests
   createTimeUnit(req, res) {
-    if(req.body.hours && req.body.minutes && req.body.id) {
+    if(req.body.hours !== undefined && req.body.minutes !== undefined && req.body.id !== undefined) {
       const hours = parseInt(req.body.hours);
       const minutes = parseInt(req.body.minutes);
       const id = req.body.id.toString();
@@ -21,13 +21,12 @@ module.exports = {
       });
     } else {
       console.log('bad request');
-      console.log(req.body);
       res.sendStatus(400);
     }
   },
   //handling delete requests
   deleteTimeUnit(req, res) {
-    if(req.body.id) {
+    if(req.body.id !== undefined) {
       const id = req.body.id.toString();
       TimeUnit.remove({ id }, (err, result) => {
         if(err) {

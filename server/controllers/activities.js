@@ -5,7 +5,7 @@ const Activity = require('./../models/activity');
 module.exports = {
   //handling post request
   createActivity(req, res) {
-    if(req.body.name && req.body.id) {
+    if(req.body.name !== undefined && req.body.id !== undefined) {
       const name = req.body.name.toString();
       const id = req.body.id.toString();
       const activity = new Activity({ name, id });
@@ -26,7 +26,7 @@ module.exports = {
   },
   //handling put request
   updateActivity(req, res) {
-    if(req.body.id && req.body.minutes) {
+    if(req.body.id !== undefined && req.body.minutes !== undefined) {
       const id = req.body.id.toString();
       const minutes = parseInt(req.body.minutes);
 
@@ -47,14 +47,13 @@ module.exports = {
         }
       });
     } else {
-      console.log(req.body);
       console.log('bad request');
       res.sendStatus(400);
     }
   },
   //handling delete request
   deleteActivity(req, res) {
-    if(req.body.id) {
+    if(req.body.id !== undefined) {
       const id = req.body.id;
       Activity.remove({ id }, (err, result) => {
         if(err) {

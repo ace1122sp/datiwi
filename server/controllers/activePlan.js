@@ -34,7 +34,7 @@ module.exports = {
     }
   },
   modifyActivity(req, res) {
-    if(req.body.order !== null) {
+    if(req.body.order !== undefined) {
       const order = parseInt(req.body.order);
       ActivityUnit.findOne({ order }, (err, result) => {
         if(err) {

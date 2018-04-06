@@ -37,9 +37,7 @@ export const fetchUpdate = (url, id, minutes) =>
       body: JSON.stringify({ id, minutes }),
       headers: { 'Content-Type': 'application/json' }
     };
+    dispatch(updateActivityStats(id, minutes));
     return fetch(url, options)
-      .then(() => {
-        dispatch(updateActivityStats(id, minutes));
-      })
       .catch(e => console.error(e.message));
   }
