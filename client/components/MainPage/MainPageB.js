@@ -26,7 +26,10 @@ const MainPageB = ({ activeTimeUnit, activeActivity, activePlan, lastActivityID,
     }
   }
   const handleCreatingPlan = () => {
-    if (last) createPlan(activePlan);
+    if (last) {
+      let planWithOrder = activePlan.map((activity, index) => Object.assign({}, activity, { order: index }));
+      createPlan(planWithOrder);
+    };
   }
   return (
     <div className='main-b'>

@@ -10,18 +10,7 @@ const PRELOADED_STATE_DATA = Object.assign({}, window.__PRELOADED_STATE_DATA__);
 
 delete window.__PRELOADED_STATE_DATA__;
 
-let activePlan = PRELOADED_STATE_DATA.plan.sort((a, b) => {
-  const a1_hours = a.startingHours.toString();
-  const a2_hours = b.startingHours.toString();
-  let a1_minutes = a.startingMinutes.toString();
-  let a2_minutes = b.startingMinutes.toString();
-  if(a1_minutes.length === 1) a1_minutes = '0' + a1_minutes;
-  if(a2_minutes.length === 1) a2_minutes = '0' + a2_minutes;
-
-  let activity1 = parseInt(a1_hours + a1_minutes);
-  let activity2 = parseInt(a2_hours + a2_minutes);
-  return activity1 - activity2;
-});
+let activePlan = PRELOADED_STATE_DATA.plan.sort((a, b) => a.order - b.order);
 
 activePlan = activePlan.map(activity => {
   let formatedActivity = {...activity};

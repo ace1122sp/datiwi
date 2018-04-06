@@ -31,7 +31,9 @@ export const fetchEnd = url =>
 export const fetchStatusUpdate = (url, index) =>
   dispatch => {
     const options = {
-      method: 'POST'
+      method: 'PUT',
+      body: JSON.stringify({ order: index }),
+      headers: { 'Content-Type': 'application/json' }
     };
     return fetch(url, options)
       .then(() => {

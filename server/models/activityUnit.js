@@ -34,6 +34,10 @@ const ActivityUnitSchema = new Schema({
     type: String,
     required: true,
     default: 'waiting'
+  },
+  order: {
+    type: Number,
+    required: true
   }
 });
 

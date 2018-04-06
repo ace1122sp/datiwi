@@ -6,7 +6,7 @@ const parallel = require('async/parallel');
 module.exports = {
   addPlan(req, res) {
       const validation = req.body.every(activityUnit => activityUnit.startingHours && activityUnit.startingMinutes &&
-         activityUnit.endingHours && activityUnit.endingMinutes && activityUnit.id !== undefined ? true : false)
+         activityUnit.endingHours && activityUnit.endingMinutes && activityUnit.order !== undefined && activityUnit.id !== undefined ? true : false)
       if(validation) {
            const count = req.body.length;
            let queries = [];
@@ -34,17 +34,37 @@ module.exports = {
     }
   },
   modifyActivity(req, res) {
-    if(req.body.id && req.body.status) {
-      const id = req.body.id.toString();
-      const status = req.body.status.toString();
-      ActivityUnit.findOneAndUpdate({ id }, { status }, (err, result) => {
+    if(req.body.order !== null) {
+      const order = parseInt(req.body.order);
+      ActivityUnit.findOne({ order }, (err, result) => {
         if(err) {
           console.error(err);
           res.sendStatus(500);
         } else {
-          console.log(`activity unit ${id} status changed to ${status}`);
-          res.sendStatus(200);
+          let id = result._id;
+          let status;
+          switch (result.status) {
+            case 'waiting':
+              status = 'failed';
+              break;
+            case 'failed':
+              status = 'completed';
+              break;
+            case 'completed':
+              status = 'waiting'
+              break;
+          }
+          doc.update({status}, (err, result) => {//rewrite-->todo find by id and update
+            if(err) {
+              console.error(err);
+              res.sendStatus(500);
+            } else {
+              console.log(`activity unit ${id} status changed to ${status}`);
+              res.sendStatus(200);
+            }
+          });
         }
+        console.log(result);
       });
     } else {
       console.log('bad request');
@@ -65,13 +85,14 @@ module.exports = {
 };
 
 async function saveActivityUnit(activityUnit) {
-  let { startingHours, startingMinutes, endingHours, endingMinutes, id } = activityUnit
+  let { startingHours, startingMinutes, endingHours, endingMinutes, id, order } = activityUnit
   startingHours = parseInt(startingHours);
   startingMinutes = parseInt(startingMinutes);
   endingHours = parseInt(endingHours);
   endingMinutes = parseInt(endingMinutes);
   id = id.toString();
-  const a_unit_doc = new ActivityUnit({ startingHours, startingMinutes, endingHours, endingMinutes, id });
+  order = parseInt(order);
+  const a_unit_doc = new ActivityUnit({ startingHours, startingMinutes, endingHours, endingMinutes, id, order });
   a_unit_doc.save((err, result) => {
     if(err) {
       console.error(err);
