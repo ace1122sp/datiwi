@@ -26,10 +26,6 @@ const mapDispatchToProps = dispatch => {
     handleUpdatingActivityStats: (id, minutes) => {
       dispatch(fetchUpdate(`${baseUrl}activity`, id, minutes));
     },
-    handleDiscardingPlan: () => {
-      dispatch(fetchEnd(`${baseUrl}active-plan`));
-      dispatch(switchMainPage('A'));
-    },
     handleSendingTodayEfficiency: eff => {
       dispatch(fetchTodayEfficiency(`${baseUrl}day-efficiency`, eff));
     }

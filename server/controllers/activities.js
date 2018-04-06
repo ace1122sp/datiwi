@@ -33,7 +33,7 @@ module.exports = {
       Activity.findOne({ id }, (err, activity) => {
         if(err) {
           console.error(err);
-          res.send(400);
+          res.sendStatus(400);
         } else {
           activity.update({ minutes }, (err, result) => {
             if(err) {
@@ -47,8 +47,9 @@ module.exports = {
         }
       });
     } else {
+      console.log(req.body);
       console.log('bad request');
-      res.send(400);
+      res.sendStatus(400);
     }
   },
   //handling delete request

@@ -54,7 +54,7 @@ module.exports = {
               status = 'waiting'
               break;
           }
-          doc.update({status}, (err, result) => {//rewrite-->todo find by id and update
+          result.update({status}, (err, result) => {
             if(err) {
               console.error(err);
               res.sendStatus(500);

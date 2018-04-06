@@ -1,4 +1,4 @@
-import { createActivity, deleteActivity, updadeActivityStats } from './library';
+import { createActivity, deleteActivity, updateActivityStats } from './library';
 import { activateActivity } from './../actions/active';
 
 export const fetchCreateActivity = (url, name, id) =>

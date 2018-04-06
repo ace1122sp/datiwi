@@ -13,7 +13,7 @@ const calcDayEfficiency = activitiesArr => {
   return completedMinutes/totalMinutes;
 }
 
-const MainPageC = ({ activePlan, activities, handleChangingStatus, finishingPlan, handleUpdatingActivityStats, handleDiscardingPlan, handleSendingTodayEfficiency }) => {
+const MainPageC = ({ activePlan, activities, handleChangingStatus, finishingPlan, handleUpdatingActivityStats, handleSendingTodayEfficiency }) => {
   let activitiesList = activePlan.map((activity, index) => {
     let time = {
       startingHours: activity.startingHours,
@@ -32,8 +32,8 @@ const MainPageC = ({ activePlan, activities, handleChangingStatus, finishingPlan
           handleUpdatingActivityStats(act.id, totalMinutes);
         }
       });
-      handleSendingTodayEfficiency(dayEff);
-      finishingPlan();
+      handleSendingTodayEfficiency(dayEff);//this should not be here
+      finishingPlan(); //this should not be here
     }
   }
   return (
@@ -45,7 +45,7 @@ const MainPageC = ({ activePlan, activities, handleChangingStatus, finishingPlan
         {activitiesList}
       </ul><br/>
       <button onClick={clickToFinishPlan} className='btn submit-btn'>finish</button>
-      <button onClick={handleDiscardingPlan} className='btn del-btn'>discard</button>
+      <button onClick={finishingPlan} className='btn del-btn'>discard</button>
     </div>
   );
 }
