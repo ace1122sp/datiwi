@@ -3,9 +3,6 @@ import { activeActivity } from './activeActivity';
 import { activePlan } from './activePlan';
 import { activeTimeUnit } from './activeTimeUnit';
 import { activities } from './activities';
-import { dataFailedToLoad } from './dataFailedToLoad';
-import { dataIsLoading } from './dataIsLoading';
-import { dataLoaded } from './dataLoaded';
 import { dayEfficiency } from './dayEfficiency';
 import { idCounterActivities } from './idCounterActivities';
 import { idCounterTimeUnits } from './idCounterTimeUnits';
@@ -20,9 +17,6 @@ const rootReducer = combineReducers({
   activePlan,
   activeTimeUnit,
   activities,
-  dataFailedToLoad,
-  dataIsLoading,
-  dataLoaded,
   dayEfficiency,
   idCounterActivities,
   idCounterTimeUnits,

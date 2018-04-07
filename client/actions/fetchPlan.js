@@ -3,7 +3,6 @@ import { switchMainPage } from './mainPage';
 
 export const fetchPlan = (url, plan) =>
   dispatch => {
-    console.log(plan);
     const options = {
       method: 'POST',
       body: JSON.stringify(plan),

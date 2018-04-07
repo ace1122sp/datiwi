@@ -3,7 +3,7 @@ import { resetDayEfficiency, sendTodayEfficiency } from './library';
 export const fetchReset = url =>
   dispatch => {
     const options = {
-      method: 'PUT'
+      method: 'DELETE'
     };
     return fetch(url, options)
       .then(() => {

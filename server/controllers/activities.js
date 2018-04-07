@@ -54,7 +54,7 @@ module.exports = {
   //handling delete request
   deleteActivity(req, res) {
     if(req.body.id !== undefined) {
-      const id = req.body.id;
+      const id = req.body.id.toString();
       Activity.remove({ id }, (err, result) => {
         if(err) {
           console.error(err);

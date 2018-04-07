@@ -10,8 +10,11 @@ const IntervalsSettings = ({ timeUnits, lastTimeUnitID, clickToDeleteTimeUnit, s
     return arrOfIds;
   })();
   const clickToDeleteAllTimeUnits = () => {
+    let count = Object.keys(timeUnits).length;
+    let updatedCount = 0;
     ids.forEach(id => {
-      clickToDeleteTimeUnit(id);
+      if(count > updatedCount + 1) clickToDeleteTimeUnit(id);
+      updatedCount++;
     });
   }
   let timeUnitsList = ids.map(id => <TimeUnit key={id.toString()} id={id} hours={timeUnits[id].hours} minutes={timeUnits[id].minutes} clickToDeleteTimeUnit={clickToDeleteTimeUnit} />);

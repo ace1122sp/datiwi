@@ -29,6 +29,6 @@ module.exports = {
         console.log('day efficiency reset');
         res.sendStatus(200);
       }
-    })
+    });
   }
 };

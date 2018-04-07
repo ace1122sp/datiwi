@@ -6,11 +6,7 @@ import App from './components/App';
 import rootReducer from './reducers';
 import thunk from 'redux-thunk';
 
-const PRELOADED_STATE_DATA = Object.assign({}, window.__PRELOADED_STATE_DATA__);
-
-delete window.__PRELOADED_STATE_DATA__;
-
-let activePlan = PRELOADED_STATE_DATA.plan.sort((a, b) => a.order - b.order);
+let activePlan = window.__PRELOADED_STATE_DATA__.plan.sort((a, b) => a.order - b.order);
 
 activePlan = activePlan.map(activity => {
   let formatedActivity = {...activity};
@@ -26,16 +22,16 @@ activePlan = activePlan.map(activity => {
   return formatedActivity;
 });
 
-const dayEfficiency = PRELOADED_STATE_DATA.pointers.dayEfficiency;
+const dayEfficiency = window.__PRELOADED_STATE_DATA__.pointers.dayEfficiency;
 const size = dayEfficiency.length;
 const dayEfficiencyLast30days = dayEfficiency.slice(size - 30);
 
 let activities = {};
 let timeUnits = {};
-PRELOADED_STATE_DATA.activities.forEach(activity => {
+window.__PRELOADED_STATE_DATA__.activities.forEach(activity => {
   activities[activity.id] = activity;
 });
-PRELOADED_STATE_DATA.timeUnits.forEach(unit => {
+window.__PRELOADED_STATE_DATA__.timeUnits.forEach(unit => {
   let hours = unit.hours.toString();
   let minutes = unit.minutes.toString();
   const id = unit.id;
@@ -45,8 +41,8 @@ PRELOADED_STATE_DATA.timeUnits.forEach(unit => {
 });
 let activeActivity;
 let activeTimeUnit;
-if(PRELOADED_STATE_DATA.activities.length) activeActivity = parseInt(PRELOADED_STATE_DATA.activities[0].id);
-if(PRELOADED_STATE_DATA.timeUnits.length) activeTimeUnit = parseInt(PRELOADED_STATE_DATA.timeUnits[0].id);
+if(window.__PRELOADED_STATE_DATA__.activities.length) activeActivity = parseInt(window.__PRELOADED_STATE_DATA__.activities[0].id);
+if(window.__PRELOADED_STATE_DATA__.timeUnits.length) activeTimeUnit = parseInt(window.__PRELOADED_STATE_DATA__.timeUnits[0].id);
 
 let showingMainPage = 'A';
 if(activePlan.length) showingMainPage = 'C'
@@ -57,14 +53,16 @@ const initState = {
   activeTimeUnit,
   activities,
   dayEfficiency: dayEfficiencyLast30days,
-  idCounterActivities: PRELOADED_STATE_DATA.pointers.idCounterActivities,
-  idCounterTimeUnits: PRELOADED_STATE_DATA.pointers.idCounterTimeUnits,
+  idCounterActivities: window.__PRELOADED_STATE_DATA__.pointers.idCounterActivities,
+  idCounterTimeUnits: window.__PRELOADED_STATE_DATA__.pointers.idCounterTimeUnits,
   timeUnits,
   showingMainPage
 };
 
 const root = document.getElementById('root');
 let store = createStore(rootReducer, initState, applyMiddleware(thunk));
+
+delete window.__PRELOADED_STATE_DATA__;
 
 render(
   <Provider store={store} >
