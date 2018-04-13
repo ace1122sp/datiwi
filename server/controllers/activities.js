@@ -35,7 +35,7 @@ module.exports = {
           console.error(err);
           res.sendStatus(400);
         } else {
-          activity.update({ minutes }, (err, result) => {
+          activity.update({$inc: { minutes: minutes } }, (err, result) => {
             if(err) {
               console.error(err);
               res.sendStatus(500);
