@@ -5,14 +5,15 @@ const router = require('./routes');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 
-const PORT = 9336;
+const PORT = process.env.PORT;
+const MONGO_DB_URL = process.env.MONGO_DB_URL;
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 const jsonParser = bodyParser.json();
 
 const app = express();
 
 //set up mongodb
-const db_url = 'mongodb://localhost:27017/datiwi';
+const db_url = MONGO_DB_URL;
 
 mongoose.Promise = global.Promise;
 mongoose.connect(db_url);
