@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -29,7 +31,7 @@ app.use(helmet());
 app.use('/', jsonParser);
 app.use('/', urlencodedParser, router);
 
-app.use(express.static(path.resolve('../dist')));
+app.use(express.static(path.resolve(__dirname, '../dist')));
 
 app.all('*', (req, res) => {
   res.status(404);
