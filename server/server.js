@@ -9,7 +9,7 @@ const helmet = require('helmet');
 
 const PORT = process.env.PORT;
 const MONGO_DB_URL = process.env.MONGO_DB_URL;
-const urlencodedParser = bodyParser.urlencoded({extended: false});
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const jsonParser = bodyParser.json();
 
 const app = express();
@@ -18,7 +18,11 @@ const app = express();
 const db_url = MONGO_DB_URL;
 
 mongoose.Promise = global.Promise;
-mongoose.connect(db_url);
+mongoose.connect(db_url)
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
